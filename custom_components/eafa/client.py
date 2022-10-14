@@ -35,29 +35,34 @@ class FloodAlertsClient:
             data_item["description"] = raw_data_item["description"]
             data_item["name"] = raw_data_item["notation"]
             data_item["friendly_name"] = raw_data_item["label"]
-            data_item["currentWarning"] = {}
+            data_item["current_arning"] = {}
             if "currentWarning" in raw_data_item.keys():
-                data_item["currentWarning"]["message"] = raw_data_item[
+                data_item["current_warning"]["message"] = raw_data_item[
                     "currentWarning"
                 ]["message"]
-                data_item["currentWarning"]["severity"] = raw_data_item[
+                data_item["current_warning"]["severity"] = raw_data_item[
                     "currentWarning"
                 ]["severity"]
-                data_item["currentWarning"]["severityLevel"] = raw_data_item[
+                data_item["current_warning"]["severity_level"] = raw_data_item[
                     "currentWarning"
                 ]["severityLevel"]
-                data_item["currentWarning"]["timeMessageChanged"] = raw_data_item[
+                data_item["current_warning"]["time_message_changed"] = raw_data_item[
                     "currentWarning"
                 ]["timeMessageChanged"]
-                data_item["currentWarning"]["timeRaised"] = raw_data_item[
+                data_item["current_warning"]["time_raised"] = raw_data_item[
                     "currentWarning"
                 ]["timeRaised"]
-                data_item["currentWarning"]["timeSeverityChanged"] = raw_data_item[
+                data_item["current_warning"]["time_severity_changed"] = raw_data_item[
                     "currentWarning"
                 ]["timeSeverityChanged"]
-                data_item["currentWarning"]["tidalAlert"] = raw_data_item[
+                data_item["current_warning"]["tidal_alert"] = raw_data_item[
                     "currentWarning"
                 ]["isTidal"]
+                data_item["risk_level"] = 4 - int(
+                    raw_data_item["currentWarning"]["severityLevel"]
+                )
+            else:
+                data_item["risk_level"] = 0
             areas[data_item["name"]] = data_item
         return areas
 

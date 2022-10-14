@@ -115,7 +115,7 @@ class FloodAlert(CoordinatorEntity):
         """Return the state of the sensor."""
         _LOGGER.debug("sensor %s updating state", self.idx)
         # _LOGGER.debug(self.coordinator.data[self.idx])
-        if len(self.coordinator.data[self.idx]["currentWarning"]) > 0:
+        if self.coordinator.data[self.idx]["risk_level"] > 0:
             return "on"
         else:
             return "off"
