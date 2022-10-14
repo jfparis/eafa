@@ -88,11 +88,15 @@ class FloodAlert(CoordinatorEntity):
 
     """
 
+    attribution = "This uses Environment Agency flood and river level data from the real-time data API"
+
     def __init__(self, coordinator, idx):
         """Pass coordinator to CoordinatorEntity."""
         super().__init__(coordinator)
         self.idx = idx
-        # self.entity_id = coordinator[self.idx]["name"]
+        self.entity_id = (
+            f"sensor.flood_alert_{coordinator.data[self.idx]['name'].lower()}"
+        )
         # self.friendly_name = f"{self.coordinator.data[self.idx]['friendly_name']}"
 
     # @property
@@ -115,7 +119,4 @@ class FloodAlert(CoordinatorEntity):
         """Return the state of the sensor."""
         _LOGGER.debug("sensor %s updating state", self.idx)
         # _LOGGER.debug(self.coordinator.data[self.idx])
-        if self.coordinator.data[self.idx]["risk_level"] > 0:
-            return "on"
-        else:
-            return "off"
+        return "on" if self.coordinator.data[self.idx]["risk_level"] > 0 else "off"
