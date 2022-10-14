@@ -76,7 +76,7 @@ class FloodAlertsClient:
             ]
             current_warning["tidal_alert"] = raw_data_item["isTidal"]
 
-            each["current_warning"].append(current_warning)
+            flood_area["current_warning"].append(current_warning)
 
             flood_area["risk_level"] = 4 - int(raw_data_item["severityLevel"])
 
