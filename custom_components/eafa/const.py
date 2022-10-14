@@ -18,4 +18,4 @@ SEVERITY_LEVEL = {
     "Warning no Longer in Force": 4,
 }
 
-REFRESH = 15
+REFRESH = 20
