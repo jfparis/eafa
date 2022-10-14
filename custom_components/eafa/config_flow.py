@@ -32,7 +32,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
     # Return info that you want to store in the config entry.
     return {
-        "title": f'Flood_alert_{data["latitude"]}|{data["longitude"]}|{data["longitude"]}'
+        "title": f'Flood_alert_{data["latitude"]}|{data["longitude"]}|{data["distance"]}'
     }
 
 
