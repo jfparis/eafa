@@ -35,7 +35,7 @@ class FloodAlertsClient:
             data_item["description"] = raw_data_item["description"]
             data_item["name"] = raw_data_item["notation"]
             data_item["friendly_name"] = raw_data_item["label"]
-            data_item["current_arning"] = {}
+            data_item["current_warning"] = {}
             if "currentWarning" in raw_data_item.keys():
                 data_item["current_warning"]["message"] = raw_data_item[
                     "currentWarning"
