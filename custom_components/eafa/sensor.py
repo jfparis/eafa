@@ -5,12 +5,10 @@ from datetime import timedelta
 import logging
 
 import async_timeout
-import aiohttp
 
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
-    UpdateFailed,
 )
 
 from .client import FloodAlertsClient
@@ -68,13 +66,13 @@ class FloodAlertsCoordinator(DataUpdateCoordinator):
         This is the place to pre-process the data to lookup tables
         so entities can quickly look up their data.
         """
-        try:
-            # Note: asyncio.TimeoutError and aiohttp.ClientError are already
-            # handled by the data update coordinator.
-            async with async_timeout.timeout(10):
-                return await self.my_api.async_get_data()
-        except aiohttp.ClientError as err:
-            raise UpdateFailed(f"Error communicating with API: {err}") from err
+        # try:
+        # Note: asyncio.TimeoutError and aiohttp.ClientError are already
+        # handled by the data update coordinator.
+        async with async_timeout.timeout(30):
+            return await self.my_api.async_get_data()
+        # except aiohttp.ClientError as err:
+        #    raise UpdateFailed(f"Error communicating with API: {err}") from err
 
 
 class FloodAlert(CoordinatorEntity):
