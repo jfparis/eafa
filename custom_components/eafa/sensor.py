@@ -1,24 +1,17 @@
 """Platform for sensor integration."""
 from __future__ import annotations
 
-from datetime import timedelta
 import logging
+from datetime import timedelta
 
 import async_timeout
-
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
 
 from .client import FloodAlertsClient
-from .const import (
-    DOMAIN,
-    CONF_LATITUDE,
-    CONF_LONGITUDE,
-    CONF_DISTANCE,
-    REFRESH,
-)
+from .const import CONF_DISTANCE, CONF_LATITUDE, CONF_LONGITUDE, DOMAIN, REFRESH
 
 _LOGGER = logging.getLogger(__name__)
 

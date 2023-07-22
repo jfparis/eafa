@@ -5,12 +5,11 @@ import logging
 from typing import Any
 
 import voluptuous as vol
-
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
 
-from .const import DOMAIN, CONF_LATITUDE, CONF_LONGITUDE, CONF_DISTANCE
+from .const import CONF_DISTANCE, CONF_LATITUDE, CONF_LONGITUDE, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 

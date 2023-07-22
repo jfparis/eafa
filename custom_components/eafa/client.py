@@ -1,6 +1,7 @@
 """Client for the environment agency flood alert api"""
-import aiohttp
 import logging
+
+import aiohttp
 
 AREA_ENDPOINT = "http://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=%s&long=%s&dist=%s"
 FLOODS_ENDPOINT = (
@@ -59,7 +60,6 @@ class FloodAlertsClient:
             each["risk_level"] = 0
 
         for raw_data_item in raw_data["items"]:
-
             flood_area = self.flood_areas[raw_data_item["floodAreaID"]]
 
             current_warning = {}
