@@ -19,3 +19,8 @@ SEVERITY_LEVEL = {
 }
 
 REFRESH = 20
+
+# Icons
+ALERT_ICON = "mdi:home-flood"
+CLEAR_ICON = "mdi:home"
+ICON = CLEAR_ICON

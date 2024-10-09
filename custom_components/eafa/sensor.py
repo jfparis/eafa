@@ -1,17 +1,28 @@
 """Platform for sensor integration."""
+
 from __future__ import annotations
 
-import logging
 from datetime import timedelta
+import logging
 
 import async_timeout
+
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
 
 from .client import FloodAlertsClient
-from .const import CONF_DISTANCE, CONF_LATITUDE, CONF_LONGITUDE, DOMAIN, REFRESH
+from .const import (
+    ALERT_ICON,
+    CLEAR_ICON,
+    CONF_DISTANCE,
+    CONF_LATITUDE,
+    CONF_LONGITUDE,
+    DOMAIN,
+    ICON,
+    REFRESH,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -111,3 +122,15 @@ class FloodAlert(CoordinatorEntity):
         _LOGGER.debug("sensor %s updating state", self.idx)
         # _LOGGER.debug(self.coordinator.data[self.idx])
         return "on" if self.coordinator.data[self.idx]["risk_level"] > 0 else "off"
+
+    @property
+    def icon(self):
+        """Return the icon of the sensor."""
+        try:
+            return (
+                ALERT_ICON
+                if self.coordinator.data[self.idx]["risk_level"] > 0
+                else CLEAR_ICON
+            )
+        except KeyError:
+            return ICON
